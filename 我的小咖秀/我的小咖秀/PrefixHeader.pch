@@ -1,0 +1,23 @@
+//
+//  PrefixHeader.pch
+//  我的小咖秀
+//
+//  Created by admin on 16/2/17.
+//  Copyright © 2016年 admin. All rights reserved.
+//
+
+#ifndef PrefixHeader_pch
+#define PrefixHeader_pch
+
+/** 随机色 */
+#define XKXColor [UIColor colorWithRed:arc4random_uniform(256) / 255.0 green:arc4random_uniform(256) / 255.0 blue:arc4random_uniform(256) / 255.0 alpha:1.0]
+
+#define KColor [UIColor colorWithRed:206/255.0 green:150/255.0 blue:17/255.0 alpha:1.0]
+#import "UIImage+Extension.h"
+#import "UIView+Extension.h"
+#import "WTBarButtonItem.h"
+#import "WTSelectedView.h"
+#import "XKXNavigationController.h"
+#import <AVFoundation/AVFoundation.h>
+#import "MyVideoPlayer.h"
+#endif
