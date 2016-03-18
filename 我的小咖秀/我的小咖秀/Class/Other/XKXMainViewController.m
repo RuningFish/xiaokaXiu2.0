@@ -87,7 +87,6 @@
     // 1.设置背景色
     vc.view.backgroundColor = XKXColor;
     vc.view.frame = CGRectMake(0, 64, self.view.width, self.view.height - 64);
-    //NSLog(@"%@",NSStringFromCGRect(vc.view.frame));
     // 2.设置标题
     vc.navigationItem.title = title;
     

@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "XKXLunchController.h"
+#import "XKXHomeController.h"
+#import "XKXMainViewController.h"
 @interface AppDelegate ()
 
 @end
@@ -24,6 +26,7 @@
     
     XKXLunchController * lunchVc = [[XKXLunchController alloc] init];
     
+    XKXHomeController * main = [[XKXHomeController alloc] init];
     self.window.rootViewController = lunchVc;
     
     [self.window makeKeyAndVisible];

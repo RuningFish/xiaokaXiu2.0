@@ -12,7 +12,9 @@
 #import "XKXHomeVideoCell.h"
 #import <MediaPlayer/MediaPlayer.h>
 #import "XKXVideoPlayController.h"
-
+#import "XKXRightView.h"
+#import "我的小咖秀-Swift.h"
+#import <POP.h>
 @interface XKXHomeController ()<UICollectionViewDataSource,UICollectionViewDelegate>
 /** collectionView */
 @property (weak,nonatomic) UICollectionView * collectionView;
@@ -47,6 +49,7 @@ static NSString * ID = @"HomeVideo";
         }
     }
     
+
     return _data;
 }
 - (void)viewDidLoad {
@@ -63,54 +66,19 @@ static NSString * ID = @"HomeVideo";
    self.navigationItem.titleView = selectedView;
     
     [self setUpCollectionView];
-  
+
 }
 
 /********************右侧按钮点击**********************/
 - (void)rightButtonClick {
     
-    // 背景
-    UIImageView * bgView = [[UIImageView alloc] init];
-    [self.navigationController.view addSubview:bgView];
-    bgView.frame = self.view.bounds;
-    self.bgView = bgView;
-    bgView.userInteractionEnabled = YES;
-    bgView.backgroundColor = [UIColor blackColor];
-    bgView.alpha = 0.9;
-    
-    // 添加点击手势
-    UITapGestureRecognizer * tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(bgViewClick)];
-    [bgView addGestureRecognizer:tap];
-    
-    // 按钮
-    NSArray * str = @[@"对嘴",@"合演",@"原创"];
-    NSArray * img = @[@"icon_bg_recorder",@"icon_bg_together",@"icon_bg_original"];
-    
-    long count = str.count;
-    CGFloat w = 115;
-    CGFloat h = w;
-    CGFloat x = (self.view.frame.size.width - w) * 0.5;
-    CGFloat margin = 30;
-    CGFloat top = (self.view.frame.size.height - str.count * h - (count - 1) * margin) * 0.5;
-
-    for (int i = 0; i < count; i ++) {
-        
-        XKXButton * button = [[XKXButton alloc] init];
-        
-        int col = i % count;
-        CGFloat y = (col * (h + margin)) + top;
-        //button.backgroundColor = XKXColor;
-        button.frame = CGRectMake(x, y, w, h);
-        // 文字
-        [button setTitle:str[i] forState:UIControlStateNormal];
-        // 图片
-   
-        [button setImage:[UIImage imageNamed:img[i]] forState:UIControlStateNormal];
-        
-        [bgView addSubview:button];
-                
-    }
+    XKXRightView * rightView = [XKXRightView rightView];
+    rightView.backgroundColor = [UIColor blackColor];
+    rightView.alpha = 0.9;
+    rightView.frame = self.view.bounds;
+    [self.navigationController.view addSubview:rightView];
 }
+
 
 /********************创建collectionView**********************/
 - (void)setUpCollectionView{
@@ -134,10 +102,13 @@ static NSString * ID = @"HomeVideo";
     [self.view addSubview:collectionView];
     self.collectionView = collectionView;
     collectionView.showsVerticalScrollIndicator = NO;
-//    collectionView.scrollsToTop = YES;
 
     // 3.注册cell
     [collectionView registerClass:[XKXHomeVideoCell class] forCellWithReuseIdentifier:ID];
+    
+    // 4.添加刷新控件
+    RefreshControl * refresh = [[RefreshControl alloc] init];
+    [collectionView addSubview:refresh];
 }
 
 - (void)bgViewClick{
