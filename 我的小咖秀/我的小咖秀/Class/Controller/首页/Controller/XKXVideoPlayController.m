@@ -8,7 +8,7 @@
 
 #import "XKXVideoPlayController.h"
 #import "XKXToolsView.h"
-@interface XKXVideoPlayController ()<XKXToolsViewDelegate>
+@interface XKXVideoPlayController ()<XKXToolsViewDelegate,UMSocialUIDelegate>
 //@property (strong,nonatomic) AVPlayer * player;
 @property (assign,nonatomic) NSTimer * timer;
 @property (strong,nonatomic) NSMutableArray * danmu;
@@ -75,7 +75,6 @@
     [self setUpToolView];
     
     //[self addTimer];
-   
 }
 /****************创建工具条***************/
 - (void)setUpToolView{
@@ -90,7 +89,17 @@
     NSString * love = [NSString stringWithFormat:@"%d",loveCount];
     NSArray * str = @[love,@"分享",@"更多"];
     XKXToolsView * toolView = [[XKXToolsView alloc] initFrame:CGRectMake(x, y, w, h) andArray:str];
-    //toolView.imageArr = @[@"btn_love_p",@"btn_share",@"btn_right_more_n"];
+    // block执行的代码块
+    toolView.option = ^{
+    
+        [UMSocialSnsService presentSnsIconSheetView:self
+                                             appKey:@"56ee5f88e0f55a567400041a"
+                                          shareText:@"你要分享的文字"
+                                         shareImage:[UIImage imageNamed:@"icon.png"]
+                                    shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatSession,UMShareToQQ,UMShareToDouban,UMShareToFacebook,UMShareToLWTimeline,UMShareToTencent,UMShareToYXSession,UMShareToWechatFavorite,nil]
+                                           delegate:self];
+
+    };
     toolView.delegate = self;
     [self.view addSubview:toolView];
     

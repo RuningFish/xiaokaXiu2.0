@@ -10,6 +10,7 @@
 #import "XKXLunchController.h"
 #import "XKXHomeController.h"
 #import "XKXMainViewController.h"
+
 @interface AppDelegate ()
 
 @end
@@ -19,6 +20,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
+    [UMSocialData setAppKey:@"56ee5f88e0f55a567400041a"];
     // 设置状态栏
     [UIApplication sharedApplication].statusBarHidden = YES;
     

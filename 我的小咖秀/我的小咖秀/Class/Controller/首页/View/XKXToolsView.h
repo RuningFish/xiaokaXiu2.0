@@ -13,6 +13,8 @@
 - (void)toolView:(XKXToolsView *)toolView witnController:(UIViewController *)controller;
 
 @end
+// 定义一个block
+typedef void (^toolsViewBlock) ();
 @interface XKXToolsView : UIView
 
 - (instancetype)initFrame:(CGRect)frame andArray:(NSArray<NSString *> *)array;
@@ -22,4 +24,6 @@
 @property (strong,nonatomic) NSArray * selImageArr;
 
 @property (assign,nonatomic) id<XKXToolsViewDelegate> delegate;
+// block属性
+@property (nonatomic,copy) toolsViewBlock option;
 @end

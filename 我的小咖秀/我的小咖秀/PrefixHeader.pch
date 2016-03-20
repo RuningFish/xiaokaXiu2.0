@@ -24,5 +24,7 @@
 #import "XKXNavigationController.h"
 #import <AVFoundation/AVFoundation.h>
 #import "MyVideoPlayer.h"
+// 友盟分享
+#import "UMSocial.h"
 
 #endif
